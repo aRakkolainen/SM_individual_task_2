@@ -30,20 +30,20 @@ public class BookingTest {
         Assertions.assertEquals(expected, Booking.cancelBooking(testUserEmail, testFlightNumber));
     }
 
-    /**This is unit test for case where the user tries to book more seats on the flight than there are available (or this actually integration test..)*/
+    /**This is one integration test for case where the user tries to book more seats on the flight than there are available */
     @Test
     public void testOverBookingFlight() throws IOException {
         List<String> flight =  Flight.searchFlights("flightNumber", "717");
         String flightData = flight.getFirst();
         String[] flightInfo = flightData.split(",");
+        String bookingHistoryBeforeThisBooking = Booking.viewBookingHistory(testUserEmail);
         int flightSeatsMax = Integer.parseInt(flightInfo[4]);
         int seatsToBeReserved = flightSeatsMax + 2; //Tries to book 2 more than maximum.
         Assertions.assertEquals("Not enough seats available.", Booking.bookFlight("habib", testFlightNumber, seatsToBeReserved));
         List<String> flightNew = Flight.searchFlights("flightNumber", "717");
         Assertions.assertEquals(flight, flightNew);
-        String expected = "No bookings found.";
-        String actual = Booking.viewBookingHistory(testUserEmail);
-        Assertions.assertEquals(expected, actual);
+        String currentActualBookingHistory = Booking.viewBookingHistory(testUserEmail);
+        Assertions.assertEquals(bookingHistoryBeforeThisBooking, currentActualBookingHistory);
     }
 
 

@@ -8,10 +8,17 @@ import java.util.List;
 class FlightTest {
     /**Unit test for testing that one test flight is found */
     @Test
-    void testSearchFlights() throws IOException {
+    void testSearchFlightsByDestination() throws IOException {
         List<String> expected = new ArrayList<>();
-        expected.add("700,Germany,18.02.25,8.00 am,70,true,10");
-        List<String> result = Flight.searchFlights("destination", "Germany");
+        expected.add("700,Berlin,18.02.25,8.00 am,70,true,10");
+        List<String> result = Flight.searchFlights("destination", "Berlin");
+        Assertions.assertEquals(expected, result);
+    }
+
+    @Test
+    void testSearchFlightsByDestinationNotFound() throws IOException {
+        List<String> expected = new ArrayList<>();
+        List<String> result = Flight.searchFlights("destination", "London");
         Assertions.assertEquals(expected, result);
     }
 }

@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.List;
 
 class AdminTest {
-    private static String testUserEmail = "tester@email.com";
+    private static String testUserEmail = "habib";
     //Test cases for admin login with correct and incorrect credentials
     @Test
     void testLoginWithCorrectCredentials() {
@@ -46,15 +46,14 @@ class AdminTest {
      * when user books a new flight and then the user also cancels this flight. Idea is to test the whole process related to Flight class.  */
     @Test
     void testAdminAddsFlightAndFlightIsFoundForNewBooking() throws IOException {
-        Assertions.assertEquals("Flight added successfully!", Admin.addFlight("720", "Finland", "25.02.25", "3.00 pm", 100, true, 5));
-        String expectedBeforeBooking = "720,Finland,25.02.25,3.00 pm,100,true,5";
-        List<String> resultBeforeBooking = Flight.viewFlights();
+        Assertions.assertEquals("Flight added successfully!", Admin.addFlight("720", "Helsinki", "25.02.25", "3.00 pm", 100, true, 5));
+        String expectedBeforeBooking = "720,Helsinki,25.02.25,3.00 pm,100,true,5";
+        List<String> resultBeforeBooking = Flight.searchFlights("destination", "Helsinki");
         Assertions.assertTrue(resultBeforeBooking.contains(expectedBeforeBooking));
         Assertions.assertEquals("Booking successful!", Booking.bookFlight(testUserEmail, "720", 2));
-        String expectedAfterBooking = "720,Finland,25.02.25,3.00 pm,98,true,5";
+        String expectedAfterBooking = "720,Helsinki,25.02.25,3.00 pm,98,true,5";
         List<String> resultAfterBooking = Flight.viewFlights();
         Assertions.assertTrue(resultAfterBooking.contains(expectedAfterBooking));
-        //Assertions.assertEquals("Booking canceled successfully!", Booking.cancelBooking(testUserEmail, "720"));
     }
 }
 
