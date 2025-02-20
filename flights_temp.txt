@@ -6,5 +6,5 @@
 717,Dhaka,12.01.25,6.00 pm,98,false,5
 717,Dhaka,12.01.25,6.00 pm,98,false,5
 
-720,Finland,25.02.25,3.00 pm,100,true,5
-720,Finland,25.02.25,3.00 pm,100,true,5
+720,Finland,25.02.25,3.00 pm,98,true,5
+720,Finland,25.02.25,3.00 pm,98,true,5

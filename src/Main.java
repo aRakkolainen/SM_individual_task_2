@@ -133,7 +133,16 @@ public class Main {
                     System.out.print("Enter number of seats: ");
                     int seats = scanner.nextInt();
                     scanner.nextLine();
-                    Admin.addFlight(flightNumber, destination, date, time, seats);
+                    System.out.print("Enter has limited time for booking (true/false): ");
+                    boolean hasCustomTimeLimitForBooking = scanner.nextBoolean();
+                    scanner.nextLine();
+                    int customBookingTimeLimit = 5;//Default time limit is five hours but otherwise it can be customized by admin
+                    if(hasCustomTimeLimitForBooking){
+                        System.out.println("Enter the time limit for booking (0-24): ");
+                        customBookingTimeLimit = scanner.nextInt();
+                    }
+                    scanner.nextLine();
+                    Admin.addFlight(flightNumber, destination, date, time, seats, hasCustomTimeLimitForBooking, customBookingTimeLimit);
                     break;
                 case 2:
                     System.out.print("Enter flight number: ");
@@ -147,7 +156,13 @@ public class Main {
                     System.out.print("Enter new number of seats: ");
                     int newSeats = scanner.nextInt();
                     scanner.nextLine();
-                    Admin.updateFlight(updateFlightNumber, newDestination, newDate, newTime, newSeats);
+                    System.out.print("Enter has limited time for booking (true/false): ");
+                    boolean newHasTimeLimitForBooking = scanner.nextBoolean();
+                    scanner.nextLine();
+                    System.out.println("Enter the time limit for booking (0-24): ");
+                    int newBookingTimeLimit = scanner.nextInt();
+                    scanner.nextLine();
+                    Admin.updateFlight(updateFlightNumber, newDestination, newDate, newTime, newSeats, newHasTimeLimitForBooking, newBookingTimeLimit);
                     break;
                 case 3:
                     List<String> flights = Flight.viewFlights();
