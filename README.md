@@ -8,7 +8,7 @@ short demonstration video.
 ## How to run the project
 This project is runnable but the main focus was in the test cases and new feature. Thus, this is not meant to be used actually.
 ## Learning goals with this project
-Practice software maintenance tasks and writing different use cases
-Practice regression testing for new feature
+- Practice software maintenance tasks and writing different use cases
+- Practice regression testing for new feature
 ## Project status
 This meets the requirements of the assignment as far as I know and this was just practice assignment so it is unlikely that I will continue the project after this course.
