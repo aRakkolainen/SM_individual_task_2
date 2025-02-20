@@ -4,30 +4,39 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 
 public class BookingTest {
     private static String testUserEmail = "tester@email.com";
-    private static final String testFlightNumber = "711";
+    private static String testUserEmail2 = "aikku@gmail.com";
+    private static final String testFlightNumber = "720";
     private static final String testFlightNumberPast = "700";
 
     @Test
     public void testBookFlight() throws IOException {
+        String newBooking = "Flight Number: " + testFlightNumber + ", Seats Booked: 2";
         String expected = "Booking successful!";
-        Assertions.assertEquals(expected, Booking.bookFlight(testUserEmail, testFlightNumber, 2));
+        Assertions.assertEquals(expected, Booking.bookFlight(testUserEmail2, testFlightNumber, 2));
+        String actualBookingHistory = Booking.viewBookingHistory(testUserEmail2);
+        Assertions.assertTrue(actualBookingHistory.contains(newBooking));
     }
 
 
     @Test
     void testCancelBooking() throws IOException {
+        String bookingHistoryBefore = Booking.viewBookingHistory(testUserEmail);
+        Booking.bookFlight(testUserEmail, "720", 2);
         String expected = "Booking canceled successfully!";
-        Booking.bookFlight(testUserEmail, testFlightNumber, 2);
-        Assertions.assertEquals(expected, Booking.cancelBooking(testUserEmail, testFlightNumber));
+        Assertions.assertEquals(expected, Booking.cancelBooking(testUserEmail, "720"));
+        Assertions.assertEquals(bookingHistoryBefore, Booking.viewBookingHistory(testUserEmail));
     }
 
     /**This is one integration test for case where the user tries to book more seats on the flight than there are available */
@@ -39,7 +48,7 @@ public class BookingTest {
         String bookingHistoryBeforeThisBooking = Booking.viewBookingHistory(testUserEmail);
         int flightSeatsMax = Integer.parseInt(flightInfo[4]);
         int seatsToBeReserved = flightSeatsMax + 2; //Tries to book 2 more than maximum.
-        Assertions.assertEquals("Not enough seats available.", Booking.bookFlight("habib", testFlightNumber, seatsToBeReserved));
+        Assertions.assertEquals("Not enough seats available.", Booking.bookFlight(testUserEmail, testFlightNumber, seatsToBeReserved));
         List<String> flightNew = Flight.searchFlights("flightNumber", "717");
         Assertions.assertEquals(flight, flightNew);
         String currentActualBookingHistory = Booking.viewBookingHistory(testUserEmail);

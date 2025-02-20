@@ -155,7 +155,7 @@ public class Booking {
                 System.out.println(resultString);
             }
         }
-        return resultString;
+        return resultString.toString();
     }
 
     /**This is the new feature for limiting booking that if the user's booking date and time is less than
@@ -169,7 +169,6 @@ public class Booking {
 
     public static boolean checkIfBookingTimeLimitHasPassed(String[] flightDetails, LocalDate bookingDate, LocalTime bookingTime) {
         boolean bookingTimeLimitHasPassed = false;
-        String flightNumber = flightDetails[0];
         String flightDate = flightDetails[2];
         String flightTime = flightDetails[3];
         int bookingTimeLimit = 5;
@@ -178,12 +177,8 @@ public class Booking {
         }
         // Microsoft Copilot was used to explain the error that leaded to this fix: (It required changing the time format in flights.txt to fit this purpose
         String correctFlightTimeFormat = flightTime.replace(".", ":").toUpperCase();
-        String bookingDateStr = bookingDate.format(DateTimeFormatter.ofPattern("dd.MM.yy"));
-        String time = LocalTime.parse(correctFlightTimeFormat, DateTimeFormatter.ofPattern("h:mm a", Locale.US)).format(DateTimeFormatter.ofPattern("HH:mm"));
-
-
-
         //Converting 12-hour clock to 24-hour format because my desktop uses that format based on this article: https://www.baeldung.com/java-convert-time-format
+        String time = LocalTime.parse(correctFlightTimeFormat, DateTimeFormatter.ofPattern("h:mm a", Locale.US)).format(DateTimeFormatter.ofPattern("HH:mm"));
         LocalDate flightDepartureDate = LocalDate.parse(flightDate, DateTimeFormatter.ofPattern("dd.MM.yy"));
         LocalTime flightDepartureTime = LocalTime.parse(time);
 

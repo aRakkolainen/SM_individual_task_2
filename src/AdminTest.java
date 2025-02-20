@@ -26,7 +26,7 @@ class AdminTest {
     }
 
 
-    /**This is an unit test for testing updateFlight functionality when existing flight 717 which currently has 98 seats, will be added 10 more seats
+    /**This is a unit test for testing updateFlight functionality when existing flight 717 which currently has 98 seats, will be added 10 more seats
      * and other values remain the same*/
     @Test
     void testUpdateFlight() throws IOException {
@@ -43,7 +43,7 @@ class AdminTest {
         Assertions.assertEquals(expected, Admin.updateFlight("717", destination, date, time, oldSeats+10, hasCustomBookingTimeLimit, timeLimit));
     }
     /**This is one integration test case for checking that when Admin adds new Flight, it is also found by the Flight class which uses it
-     * when user books a new flight and then the user also cancels this flight. Idea is to test the whole process related to Flight class.  */
+     * when user books a new flight and then the user also cancels this booking. Idea is to test the whole process related to Flight class.  */
     @Test
     void testAdminAddsFlightAndFlightIsFoundForNewBooking() throws IOException {
         Assertions.assertEquals("Flight added successfully!", Admin.addFlight("720", "Helsinki", "25.02.25", "3.00 pm", 100, true, 5));

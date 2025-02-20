@@ -1,11 +1,7 @@
-711,Paris,21.02.25,8.30 am,92,false,5
+711,Paris,21.02.25,8.30 am,62,false,5
 700,Berlin,18.02.25,8.00 am,70,true,10
-717,Dhaka,12.01.25,6.00 pm,128,true,10
-720,Helsinki,25.02.25,3.00 pm,90,true,5
-720,Helsinki,25.02.25,3.00 pm,90,true,5
-720,Helsinki,25.02.25,3.00 pm,92,true,5
-720,Helsinki,25.02.25,3.00 pm,94,true,5
+720,Helsinki,25.02.25,3.00 pm,30,true,5
+717,Dhaka,12.01.25,6.00 pm,128,false,5
+720,Helsinki,25.02.25,3.00 pm,72,true,5
+717,Dhaka,12.01.25,6.00 pm,128,false,5
 720,Helsinki,25.02.25,3.00 pm,96,true,5
-717,Dhaka,12.01.25,6.00 pm,128,true,10
-720,Helsinki,25.02.25,3.00 pm,98,true,5
-717,Dhaka,12.01.25,6.00 pm,98,false,5
